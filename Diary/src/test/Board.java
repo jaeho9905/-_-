@@ -69,7 +69,9 @@ public class Board {
 				int idToModify = scanner.nextInt();
 				scanner.nextLine();
 				doCommandModify(idToModify);
-
+			}else if (command.equals("schedule")) {
+				scanner.nextLine();
+				doSchedule();
 			} else if (command.equals("signup")) {
 				scanner.nextLine();
 				doCommandSignup();
@@ -209,6 +211,9 @@ public class Board {
 		}
 	}
 
+	void doSchedule() {  
+		Schedule.getMonthGalendar();    
+    }
 
 	void doCommandSignup() {
 		System.out.println("======== 회원 가입 ========");
@@ -284,6 +289,7 @@ public class Board {
 							System.out.println("delete : 일기 삭제");
 							System.out.println("list : 일기 리스트 보기");
 							System.out.println("detail : 일기 상세보기");
+							System.out.println("schedule : 달력 보기");
 							System.out.println("exit : 일기장 종료");
 						} else {
 							System.out.println("비밀번호가 일치하지 않습니다.");
