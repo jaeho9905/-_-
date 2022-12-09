@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Scanner;
 
-public class Board {
+public class Board implements Article2{
 
 	Scanner scanner;
 
@@ -32,8 +32,8 @@ public class Board {
 	int lastArticle() {
 		return articlesLastIndex + 1;
 	}
-
-	void start() {
+	@Override
+	public void start() {
 //       showHelp();
 		doCommandLogin();
 
@@ -69,9 +69,7 @@ public class Board {
 				int idToModify = scanner.nextInt();
 				scanner.nextLine();
 				doCommandModify(idToModify);
-			}else if (command.equals("schedule")) {
-				scanner.nextLine();
-				doSchedule();
+
 			} else if (command.equals("signup")) {
 				scanner.nextLine();
 				doCommandSignup();
@@ -92,11 +90,13 @@ public class Board {
 		}
 	}
 
-	void doCommandHelp() {
+	@Override
+	public void doCommandHelp() {
 		showHelp();
 	}
 
-	void doCommandList() {
+	@Override
+	public void doCommandList() {
 		System.out.println("== 게시물 리스트 ==");
 
 		if (articlesLastIndex >= 0) {
@@ -111,8 +111,8 @@ public class Board {
 		}
 
 	}
-
-	void doCommandAdd() {
+	@Override
+	public void doCommandAdd() {
 		System.out.println("== 게시물 추가 ==");
 
 		Article article = new Article();
@@ -159,8 +159,8 @@ public class Board {
 		}
 
 	}
-
-	void doCommandDetail(int id) {
+	@Override
+	public void doCommandDetail(int id) {
 		System.out.println("== 게시물 상세 ==");
 		if (getArticlesById(id) != null) {
 			System.out.printf("    번호    \n%d\n", getArticlesById(id).id);
@@ -175,7 +175,8 @@ public class Board {
 
 	}
 
-	void doCommandDelete(int id) {
+	@Override
+	public void doCommandDelete(int id) {
 		System.out.println("== 게시물 삭제 ==");
 		if (getArticlesById(id) != null) {
 			int temp = getArticlesById(id).id - 1;
@@ -195,7 +196,8 @@ public class Board {
 		}
 	}
 
-	void doCommandModify(int id) {
+	@Override
+	public void doCommandModify(int id) {
 		System.out.println("== 게시물 수정 ==");
 		if (getArticlesById(id) != null) {
 			getArticlesById(id).resDate = getNowDateStr();
@@ -211,11 +213,9 @@ public class Board {
 		}
 	}
 
-	void doSchedule() {  
-		Schedule.getMonthGalendar();    
-    }
 
-	void doCommandSignup() {
+	@Override
+	public void doCommandSignup() {
 		System.out.println("======== 회원 가입 ========");
 
 		Member member = new Member();
@@ -263,7 +263,8 @@ public class Board {
 		doCommandLogin();
 	}
 
-	void doCommandLogin() {
+	@Override
+	public void doCommandLogin() {
 		System.out.println("========  로그인  ========");
 		if (membersLastIndex >= 0) {
 
@@ -289,7 +290,6 @@ public class Board {
 							System.out.println("delete : 일기 삭제");
 							System.out.println("list : 일기 리스트 보기");
 							System.out.println("detail : 일기 상세보기");
-							System.out.println("schedule : 달력 보기");
 							System.out.println("exit : 일기장 종료");
 						} else {
 							System.out.println("비밀번호가 일치하지 않습니다.");
@@ -305,7 +305,8 @@ public class Board {
 		}
 	}
 
-	void doCommandLogout() {
+	@Override
+	public void doCommandLogout() {
 		if (login_code == true) {
 			System.out.printf("로그아웃 하시겠습니까? (Y / N) ");
 			String temp_logout = scanner.next();
@@ -326,11 +327,13 @@ public class Board {
 		}
 	}
 
-	void doCommandExit() {
+	@Override
+	public void doCommandExit() {
 		System.out.println("== 게시판 종료 ==");
 	}
 
-	void showHelp() {
+	@Override
+	public void showHelp() {
 		System.out.println("====== 명령어 리스트 ======");
 		System.out.println("help : 명령어 리스트");
 		System.out.println("add : 일기 추가");
