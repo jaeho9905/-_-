@@ -109,8 +109,8 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 
 		for (int key : Article.usermap.keySet()) {
 			if (id == Article.usermap.get(key).id) {
-				Article.usermap.remove(key);
-
+				Article.usermap.remove(id);
+				
 			}
 		}
 
