@@ -92,7 +92,6 @@ public class Sys_implement extends Diary_implement implements Sys_interface{
 		System.out.println("modify : 일기 수정");
 		System.out.println("delete : 일기 삭제");
 		System.out.println("list : 일기 리스트 보기");
-		System.out.println("detail : 일기 상세보기");
 		System.out.println("schedule : 스케줄 확인하기");
 		System.out.println("exit 일기장 종료");
 		System.out.println("signup : 회원 가입");
