@@ -306,10 +306,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 				default:
 					System.out.println("잘 못 입력하셨습니다. 다시 선택해주세요.");
 				}
-			} else {
-				System.out.println("스케줄 작성을 위해 로그인이 필요합니다.");
-				break;
-			}
+			} 
 			if (exit == true) {
 				break;
 			}
