@@ -204,6 +204,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 
 		} // for
 		while (true) {
+			Scanner sc = new Scanner(System.in);
 			boolean exit = false;
 			System.out.println();
 			System.out.println("+---------------------------------+");
@@ -213,7 +214,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 			System.out.println("+---------------------------------+");
 
 			System.out.print("명령 (1.일정 등록  2.일정 검색 및 변경 3.종료 )\n> ");
-			char order = scanner.next().charAt(0);
+			char order = sc.next().charAt(0);
 			if (login_code == false) {
 
 				switch (order) {
@@ -221,7 +222,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 				case '1':
 
 					System.out.print("[일정 등록] 날짜를 입력하세요.(ex.2020-01-01)\n> ");
-					String theDate = scanner.next();
+					String theDate = sc.next();
 					System.out.println("날짜 입력완료");
 					if (!listMap.containsKey(theDate)) {
 						// 기존의 일정이 없다면, 빈 Arraylist를 추가한다.
@@ -231,7 +232,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 					}
 
 					System.out.print("[일정 등록] 일정을 입력하세요.\n> ");
-					String theList = scanner.next();
+					String theList = sc.next();
 
 					ArrayList<String> existList = listMap.get(theDate);
 					existList.add(theList);
@@ -240,7 +241,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 
 				case '2':
 					System.out.print("[일정 검색] 날짜를 입력하세요.(ex.2020-01-01)\n> ");
-					String findDate = scanner.next();
+					String findDate = sc.next();
 
 					if (listMap.containsKey(findDate)) {
 						// 해당 날짜에 일정이 있다면
@@ -255,7 +256,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 
 						while (true) {
 							System.out.print("일정을 변경하시겠습니까?(예:1 / 아니오:2)\n> ");
-							String change = scanner.next();
+							String change = sc.next();
 
 							if (change.equals("1")) {
 								// 일정 변경한다.
@@ -266,7 +267,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 								}
 
 								System.out.print("변경할 일정의 번호를 입력하세요.(숫자만 입력)\n> ");
-								int number = scanner.nextInt();
+								int number = sc.nextInt();
 								scanner.nextLine();
 
 								if (number - 1 >= schedule.size()) {
@@ -276,7 +277,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 								} else {
 									// index exists
 									System.out.print("변경 내용을 입력하세요.\n> ");
-									String changeList = scanner.next();
+									String changeList = sc.next();
 
 									schedule.set(number - 1, changeList);
 									System.out.println("정상적으로 일정이 변경되었습니다.");

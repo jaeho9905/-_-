@@ -34,9 +34,9 @@ public class Sys_implement extends Diary_implement implements Sys_interface{
 
 	@Override
 	public void start() {
-		
+		mainMenu();
 		while (true) {
-
+			
 			System.out.println("명령어를 보시려면 'help'를 입력해주세요.");
 			String command = scanner.next();
 
@@ -69,16 +69,14 @@ public class Sys_implement extends Diary_implement implements Sys_interface{
 			} else if (command.equals("login")) {
 				scanner.nextLine();
 					doCommandLogin();
-					
-
-				
+	
 			} else if (command.equals("logout")) {
 				scanner.nextLine();
 				doCommandLogout();
 			} else if (command.equals("exit")) {
 				scanner.nextLine();
 				doCommandExit();
-				break;
+			
 			} else {
 				scanner.nextLine();
 				System.out.println("잘못된 명령어 입니다.");
@@ -111,7 +109,7 @@ public class Sys_implement extends Diary_implement implements Sys_interface{
 	@Override
 	public void doCommandExit() {
 		System.out.println("======  게시판 종료 ======");
-		
+		System.exit(0);
 	}
 
 

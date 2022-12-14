@@ -37,11 +37,12 @@ public class Log_implement extends Article implements Log_interface {
 			System.out.printf("회원가입 비밀번호 : ");
 			String pw = scanner.next();
 			Article.join.put(id, pw);
+			System.out.printf("%s님 회원가입을 축하합니다.\n", id);
 		} else {
 			System.out.println("중복된 아이디입니다.");
 		}
 
-		System.out.printf("%s님 회원가입을 축하합니다.\n", id);
+		
 
 
 	}
