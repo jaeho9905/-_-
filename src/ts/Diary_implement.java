@@ -40,15 +40,15 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 	   public void doCommandList() {
 	      System.out.println("========  게시물 리스트  ========");
 
-	      System.out.println("번호  | 날짜                   | 제목          ");
+	      System.out.println("번호  | 날짜                   | 제목           |내용");
 
 	      for (int key : Article.usermap.keySet()) {
 	         if (user_id.equals(Article.usermap.get(key).user_id)) {
 	            Article value = Article.usermap.get(key);
 	            System.out.print(value.id + "    | ");
 	            System.out.print(value.resDate+ "   |");
-	            System.out.println(value.title);
-	            System.out.println("내용  | "+value.body);
+	            System.out.print(value.title);
+	            System.out.println("         |"+value.body);
 	         }
 	      }
 	   }
@@ -86,7 +86,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 				if (article.body1.equals("exit")) {
 					break;
 				}
-				article.body += article.body1 + "\n     | ";
+				article.body += article.body1 + "\n        ";
 			}
 
 			int articlesNewIndex = articlesLastIndex + 1;
@@ -268,7 +268,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 
 								System.out.print("변경할 일정의 번호를 입력하세요.(숫자만 입력)\n> ");
 								int number = sc.nextInt();
-								scanner.nextLine();
+								sc.nextLine();
 
 								if (number - 1 >= schedule.size()) {
 									// index not exists
@@ -281,6 +281,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 
 									schedule.set(number - 1, changeList);
 									System.out.println("정상적으로 일정이 변경되었습니다.");
+									break;
 								}
 							} else if (change.equals("2")) {
 								// 일정 변경하지 않는다.
