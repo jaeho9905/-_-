@@ -114,9 +114,12 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 		System.out.println("======  게시물 삭제 ======");
 
 		for (int key : Article.usermap.keySet()) {
-			if (id == Article.usermap.get(key).id) {
+			if (id == Article.usermap.get(key).id&&user_id.equals(Article.usermap.get(key).user_id)) {
 				Article.usermap.remove(id);
 
+			}
+			else {
+				System.out.println("권한이 없습니다.");
 			}
 		}
 
@@ -130,7 +133,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 
 		article.resDate = getNowDateStr();
 		for (int key : Article.usermap.keySet()) {
-			if (id == Article.usermap.get(key).id) {
+			if (id == Article.usermap.get(key).id&&user_id.equals(Article.usermap.get(key).user_id)) {
 				if (login_code == true) {
 					System.out.println("제목 : ");
 					article.title = scanner.nextLine();
@@ -147,6 +150,8 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 							new Article(user_id, key, article.resDate, article.title, article.body));
 
 				}
+			}else {
+				System.out.println("권한이 없거나 입력하신 번호의 게시물이 존재하지않습니다.");
 			}
 		}
 
