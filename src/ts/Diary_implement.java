@@ -41,13 +41,13 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 		if (login_code == true) {
 			System.out.println("========  게시물 리스트  ========");
 
-			System.out.println("번호  | 날짜                   | 제목           |내용");
+			System.out.println("번호   | 날짜                            | 제목           |내용");
 
 			for (int key : Article.usermap.keySet()) {
 				if (user_id.equals(Article.usermap.get(key).user_id)) {
 					Article value = Article.usermap.get(key);
-					System.out.print(value.id + "    | ");
-					System.out.print(value.resDate + "   |");
+					System.out.print(" "+value.id + "       | ");
+					System.out.print(value.resDate + "   |   ");
 					System.out.print(value.title);
 					System.out.println("         |" + value.body);
 				}
@@ -114,11 +114,10 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 		System.out.println("======  게시물 삭제 ======");
 
 		for (int key : Article.usermap.keySet()) {
-			if (id == Article.usermap.get(key).id&&user_id.equals(Article.usermap.get(key).user_id)) {
+			if (id == Article.usermap.get(key).id && user_id.equals(Article.usermap.get(key).user_id)) {
 				Article.usermap.remove(id);
 
-			}
-			else {
+			} else {
 				System.out.println("권한이 없거나 입력하신 번호의 게시물이 존재하지않습니다.");
 			}
 		}
@@ -133,7 +132,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 
 		article.resDate = getNowDateStr();
 		for (int key : Article.usermap.keySet()) {
-			if (id == Article.usermap.get(key).id&&user_id.equals(Article.usermap.get(key).user_id)) {
+			if (id == Article.usermap.get(key).id && user_id.equals(Article.usermap.get(key).user_id)) {
 				if (login_code == true) {
 					System.out.println("제목 : ");
 					article.title = scanner.nextLine();
@@ -148,9 +147,8 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 					}
 					Article.usermap.replace(key,
 							new Article(user_id, key, article.resDate, article.title, article.body));
-
 				}
-			}else {
+			} else {
 				System.out.println("권한이 없거나 입력하신 번호의 게시물이 존재하지않습니다.");
 			}
 		}
@@ -247,8 +245,10 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 					String theList = sc.next();
 
 					ArrayList<String> existList = listMap.get(theDate);
+
 					existList.add(theList);
 					listMap.put(theDate, existList);
+					System.out.println("일정이 등록되었습니다.");
 
 					break;
 
@@ -292,11 +292,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 									String changeList = sc.next();
 
 									schedule.set(number - 1, changeList);
-									if (!(changeList.equals(listMap.get(findDate)) && listMap.containsKey(findDate))) {
-										System.out.println("이미 등록되어있는 일정입니다.");
-										break;
-
-									}
+									
 									System.out.println("정상적으로 일정이 변경되었습니다.");
 
 								}
