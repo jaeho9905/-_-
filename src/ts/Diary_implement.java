@@ -38,23 +38,29 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 
 	@Override
 	public void doCommandList() {
-		System.out.println("========  게시물 리스트  ========");
+		if (login_code == true) {
+			System.out.println("========  게시물 리스트  ========");
 
-		System.out.println("번호  | 날짜                   | 제목           |내용");
+			System.out.println("번호  | 날짜                   | 제목           |내용");
 
-		for (int key : Article.usermap.keySet()) {
-			if (user_id.equals(Article.usermap.get(key).user_id)) {
-				Article value = Article.usermap.get(key);
-				System.out.print(value.id + "    | ");
-				System.out.print(value.resDate + "   |");
-				System.out.print(value.title);
-				System.out.println("         |" + value.body);
+			for (int key : Article.usermap.keySet()) {
+				if (user_id.equals(Article.usermap.get(key).user_id)) {
+					Article value = Article.usermap.get(key);
+					System.out.print(value.id + "    | ");
+					System.out.print(value.resDate + "   |");
+					System.out.print(value.title);
+					System.out.println("         |" + value.body);
+				}
 			}
+		} else {
+			System.out.println("로그인 상태가 아닙니다");
+			doCommandLogin();
 		}
 	}
 
 	@Override
 	public void doCommandAdd() {
+
 		System.out.println("========  게시물 추가  ========");
 
 		Article article = new Article();
@@ -104,6 +110,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 
 	@Override
 	public void doCommandDelete(int id) {
+
 		System.out.println("======  게시물 삭제 ======");
 
 		for (int key : Article.usermap.keySet()) {
@@ -117,6 +124,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 
 	@Override
 	public void doCommandModify(int id) {
+
 		System.out.println("======  게시물 수정 ======");
 		Article article = new Article();
 
@@ -141,6 +149,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 				}
 			}
 		}
+
 	}
 
 	void doSchedule() {
@@ -267,7 +276,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 								System.out.print("변경할 일정의 번호를 입력하세요.(숫자만 입력)\n> ");
 								int number = sc.nextInt();
 								sc.nextLine();
-								
+
 								if (number - 1 >= schedule.size()) {
 									// index not exists
 									System.out.println("잘 못 입력하셨습니다. 존재하는 일정을 선택하세요.");
@@ -276,27 +285,27 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 									// index exists
 									System.out.print("변경 내용을 입력하세요.\n> ");
 									String changeList = sc.next();
-									
-										schedule.set(number - 1, changeList);
-										 if (!(changeList.equals(listMap.get(findDate)) && listMap.containsKey(findDate)))  {
-												System.out.println("이미 등록되어있는 일정입니다.");
-												break;
-											}
-										System.out.println("정상적으로 일정이 변경되었습니다.");
-										
+
+									schedule.set(number - 1, changeList);
+									if (!(changeList.equals(listMap.get(findDate)) && listMap.containsKey(findDate))) {
+										System.out.println("이미 등록되어있는 일정입니다.");
+										break;
+
 									}
+									System.out.println("정상적으로 일정이 변경되었습니다.");
+
+								}
 								break;
 							}
-								
 
-							 else if (change.equals("2")) {
+							else if (change.equals("2")) {
 								// 일정 변경하지 않는다.
 								break;
 							} else {
 								// 1이나 2 외에 엉뚱한 값을 입력하면
 								System.out.println("잘 못 입력하셨습니다. 다시 선택해주세요.");
 							}
-			
+
 						}
 
 					} else {
@@ -304,8 +313,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 						System.out.println("해당 날짜에 일정이 존재하지 않습니다.");
 					}
 					break;
-			
-			
+
 				case '3':
 					System.out.println("스케줄을 종료합니다. 이용해 주셔서 감사합니다.");
 //				System.exit(0);
@@ -314,11 +322,13 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 				default:
 					System.out.println("잘 못 입력하셨습니다. 다시 선택해주세요.");
 				}
-			}if(exit==true)
+			}
+			if (exit == true)
 
-	{
-		break;
+			{
+				break;
+			}
+		}
 	}
-}}
 
 }
