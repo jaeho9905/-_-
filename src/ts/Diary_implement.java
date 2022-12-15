@@ -36,22 +36,22 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 		return null;
 	}
 
-	   @Override
-	   public void doCommandList() {
-	      System.out.println("========  게시물 리스트  ========");
+	@Override
+	public void doCommandList() {
+		System.out.println("========  게시물 리스트  ========");
 
-	      System.out.println("번호  | 날짜                   | 제목           |내용");
+		System.out.println("번호  | 날짜                   | 제목           |내용");
 
-	      for (int key : Article.usermap.keySet()) {
-	         if (user_id.equals(Article.usermap.get(key).user_id)) {
-	            Article value = Article.usermap.get(key);
-	            System.out.print(value.id + "    | ");
-	            System.out.print(value.resDate+ "   |");
-	            System.out.print(value.title);
-	            System.out.println("         |"+value.body);
-	         }
-	      }
-	   }
+		for (int key : Article.usermap.keySet()) {
+			if (user_id.equals(Article.usermap.get(key).user_id)) {
+				Article value = Article.usermap.get(key);
+				System.out.print(value.id + "    | ");
+				System.out.print(value.resDate + "   |");
+				System.out.print(value.title);
+				System.out.println("         |" + value.body);
+			}
+		}
+	}
 
 	@Override
 	public void doCommandAdd() {
@@ -102,7 +102,6 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 
 	}
 
-
 	@Override
 	public void doCommandDelete(int id) {
 		System.out.println("======  게시물 삭제 ======");
@@ -110,7 +109,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 		for (int key : Article.usermap.keySet()) {
 			if (id == Article.usermap.get(key).id) {
 				Article.usermap.remove(id);
-				
+
 			}
 		}
 
@@ -120,7 +119,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 	public void doCommandModify(int id) {
 		System.out.println("======  게시물 수정 ======");
 		Article article = new Article();
-		
+
 		article.resDate = getNowDateStr();
 		for (int key : Article.usermap.keySet()) {
 			if (id == Article.usermap.get(key).id) {
@@ -136,14 +135,13 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 						}
 						article.body += article.body1 + "\n       ";
 					}
-					Article.usermap.replace(key, new Article(user_id, key, article.resDate, article.title, article.body));
+					Article.usermap.replace(key,
+							new Article(user_id, key, article.resDate, article.title, article.body));
 
 				}
 			}
 		}
 	}
-
-
 
 	void doSchedule() {
 		Diary_implement board = new Diary_implement();
@@ -237,6 +235,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 					ArrayList<String> existList = listMap.get(theDate);
 					existList.add(theList);
 					listMap.put(theDate, existList);
+
 					break;
 
 				case '2':
@@ -276,11 +275,15 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 									continue;
 								} else {
 									// index exists
-									System.out.print("변경 내용을 입력하세요.\n> ");
-									String changeList = sc.next();
-
-									schedule.set(number - 1, changeList);
-									System.out.println("정상적으로 일정이 변경되었습니다.");
+									
+										System.out.print("변경 내용을 입력하세요.\n> ");
+										String changeList = sc.next();
+										if (changeList.equals(listMap.get(findDate)) && listMap.containsKey(findDate)) {
+										schedule.set(number - 1, changeList);
+										System.out.println("정상적으로 일정이 변경되었습니다.");
+									} else {
+										System.out.println("이미 등록되어있는 일정입니다.");
+									}
 									break;
 								}
 							} else if (change.equals("2")) {
@@ -306,7 +309,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 				default:
 					System.out.println("잘 못 입력하셨습니다. 다시 선택해주세요.");
 				}
-			} 
+			}
 			if (exit == true) {
 				break;
 			}
