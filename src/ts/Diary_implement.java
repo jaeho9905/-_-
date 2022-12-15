@@ -119,7 +119,7 @@ public class Diary_implement extends Log_implement implements Diary_interface {
 
 			}
 			else {
-				System.out.println("권한이 없습니다.");
+				System.out.println("권한이 없거나 입력하신 번호의 게시물이 존재하지않습니다.");
 			}
 		}
 
